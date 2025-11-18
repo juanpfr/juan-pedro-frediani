@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Produtos</h2>
+<a href="{{ url_for('product_new') }}">Novo Produto</a>
+<form method="get" style="display:inline-block;margin-left:20px;">
+  <input name="q" placeholder="buscar por nome" value="{{ q }}">
+  <button type="submit">Buscar</button>
+</form>
+<table>
+  <thead><tr><th>Código</th><th>Nome</th><th>Qtd</th><th>Min</th><th>Ações</th></tr></thead>
+  <tbody>
+  {% for p in products %}
+    <tr>
+      <td>{{ p.code }}</td>
+      <td>{{ p.name }}</td>
+      <td>{{ p.quantity }}</td>
+      <td>{{ p.min_quantity }}</td>
+      <td>
+        <a href="{{ url_for('product_edit', id=p.id) }}">Editar</a>
+        <form method="post" action="{{ url_for('product_delete', id=p.id) }}" style="display:inline;">
+          <button type="submit" onclick="return confirm('Excluir?')">Excluir</button>
+        </form>
+      </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

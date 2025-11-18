@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Dashboard</h2>
+<p>Bem-vindo, {{ username }}!</p>
+<nav>
+  <a href="{{ url_for('products') }}">Produtos</a> |
+  <a href="{{ url_for('movements') }}">Movimentações</a>
+</nav>
+<h3>Produtos com estoque abaixo do mínimo</h3>
+{% if low_stock %}
+  <ul>
+  {% for p in low_stock %}
+    <li>{{ p.code }} - {{ p.name }} (qtd: {{ p.quantity }} | mínimo: {{ p.min_quantity }})</li>
+  {% endfor %}
+  </ul>
+{% else %}
+  <p>Nenhum produto com estoque baixo.</p>
+{% endif %}
+{% endblock %}

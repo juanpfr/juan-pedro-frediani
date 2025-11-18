@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Movimentações</h2>
+<form method="post">
+  <label>Produto
+    <select name="product_id">
+    {% for p in products %}
+      <option value="{{ p.id }}">{{ p.code }} - {{ p.name }}</option>
+    {% endfor %}
+    </select>
+  </label><br>
+  <label>Tipo
+    <select name="type">
+      <option value="in">Entrada</option>
+      <option value="out">Saída</option>
+    </select>
+  </label><br>
+  <label>Quantidade<br><input name="amount" type="number" value="1" min="1"></label><br>
+  <label>Responsável<br><input name="responsible" value="{{ session.username }}"></label><br>
+  <button type="submit">Registrar</button>
+</form>
+<h3>Histórico recente</h3>
+<table>
+  <thead><tr><th>Data</th><th>Produto</th><th>Tipo</th><th>Qtd</th><th>Responsável</th></tr></thead>
+  <tbody>
+  {% for m in movements %}
+    <tr>
+      <td>{{ m.timestamp.strftime('%Y-%m-%d %H:%M') }}</td>
+      <td>{{ m.product.code }} - {{ m.product.name }}</td>
+      <td>{{ m.type }}</td>
+      <td>{{ m.amount }}</td>
+      <td>{{ m.responsible }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

@@ -1,6 +1,6 @@
 # SAEP - Sistema de Gestão de Estoque
 
-Um sistema simples de gestão de estoque desenvolvido em **Python (Flask)** com banco de dados **PostgreSQL**.
+Um sistema de gestão de estoque desenvolvido em **Python (Flask)** com banco de dados **PostgreSQL**.
 
 ---
 
